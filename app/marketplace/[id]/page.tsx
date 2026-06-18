@@ -30,33 +30,25 @@ export default function ListingPage({ params }: { params: Promise<{ id: string }
   const feeXAF = Math.round(listing.discountedPrice * 0.03);
   const totalXAF = listing.discountedPrice + feeXAF;
 
-  const FAPSHI_HEADERS = {
-    "Content-Type": "application/json",
-    apiuser: "e9db3ae1-ca2c-4de5-bb6b-fb641824c5f5",
-    apikey:  "FAK_TEST_a2896f113e3b15f7921d",
-  };
-
   async function handleConfirm() {
     setError(null);
     if (payMethod === "orange" || payMethod === "mtn") {
       setStep("phone");
       return;
     }
-    // Fapshi Checkout — redirect to payment page
     setStep("processing");
     try {
-      const res = await fetch("https://sandbox.fapshi.com/initiate-pay", {
+      const res = await fetch("/api/pay", {
         method: "POST",
-        headers: FAPSHI_HEADERS,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount: totalXAF,
           message: `EcoPlate: ${listing!.title}`,
           externalId: listing!.id,
-          redirectUrl: `${window.location.origin}/orders/pending`,
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message ?? "Payment failed");
+      if (!res.ok) throw new Error(data.error ?? data.message ?? "Payment failed");
       window.location.href = data.link;
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Payment failed");
@@ -73,9 +65,9 @@ export default function ListingPage({ params }: { params: Promise<{ id: string }
     setStep("processing");
     try {
       const medium = payMethod === "mtn" ? "mobile money" : "orange money";
-      const res = await fetch("https://sandbox.fapshi.com/direct-pay", {
+      const res = await fetch("/api/pay/direct", {
         method: "POST",
-        headers: FAPSHI_HEADERS,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount: totalXAF,
           phone: phone.replace(/\s/g, ""),
@@ -85,7 +77,7 @@ export default function ListingPage({ params }: { params: Promise<{ id: string }
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message ?? "Payment failed");
+      if (!res.ok) throw new Error(data.error ?? data.message ?? "Payment failed");
       setTransId(data.transId);
       setStep("done");
     } catch (e: unknown) {

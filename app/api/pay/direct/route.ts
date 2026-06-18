@@ -9,7 +9,7 @@ import { initiateDirectPay } from "@/lib/fapshi";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { amount, phone, name, email, externalId, message } = body;
+    const { amount, phone, medium, name, email, externalId, message } = body;
 
     if (!amount || amount < 100) {
       return NextResponse.json(
@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
     const result = await initiateDirectPay({
       amount: Math.round(amount),
       phone,
+      medium,
       name,
       email,
       externalId,
