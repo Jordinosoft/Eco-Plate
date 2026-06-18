@@ -5,12 +5,12 @@
 const BASE = "https://sandbox.fapshi.com";
 
 // Fallback credentials (sandbox/test only — safe to embed)
-const FALLBACK_APIUSER = "eaf4374a-953c-4bbd-89de-982954a09bdf";
-const FALLBACK_APIKEY  = "FAK_8689e8977be85885a16101fb4103b104";
+const FALLBACK_APIUSER = "e9db3ae1-ca2c-4de5-bb6b-fb641824c5f5";
+const FALLBACK_APIKEY = "FAK_TEST_a2896f113e3b15f7921d";
 
 function buildHeaders() {
   const apiuser = process.env.FAPSHI_API_USER || FALLBACK_APIUSER;
-  const apikey  = process.env.FAPSHI_API_KEY  || FALLBACK_APIKEY;
+  const apikey = process.env.FAPSHI_API_KEY || FALLBACK_APIKEY;
   return {
     "Content-Type": "application/json",
     apiuser,
@@ -72,7 +72,9 @@ export type TransactionStatus = {
 
 // ─── Payment Link ─────────────────────────────────────────────────────────────
 
-export async function createPaymentLink(payload: PayLinkPayload): Promise<PayLinkResponse> {
+export async function createPaymentLink(
+  payload: PayLinkPayload,
+): Promise<PayLinkResponse> {
   const res = await fetch(`${BASE}/initiate-pay`, {
     method: "POST",
     headers: buildHeaders(),
@@ -85,7 +87,9 @@ export async function createPaymentLink(payload: PayLinkPayload): Promise<PayLin
 
 // ─── Direct Pay ───────────────────────────────────────────────────────────────
 
-export async function initiateDirectPay(payload: DirectPayPayload): Promise<DirectPayResponse> {
+export async function initiateDirectPay(
+  payload: DirectPayPayload,
+): Promise<DirectPayResponse> {
   const res = await fetch(`${BASE}/direct-pay`, {
     method: "POST",
     headers: buildHeaders(),
@@ -98,7 +102,9 @@ export async function initiateDirectPay(payload: DirectPayPayload): Promise<Dire
 
 // ─── Transaction Status ───────────────────────────────────────────────────────
 
-export async function getTransactionStatus(transId: string): Promise<TransactionStatus> {
+export async function getTransactionStatus(
+  transId: string,
+): Promise<TransactionStatus> {
   const res = await fetch(`${BASE}/payment-status/${transId}`, {
     method: "GET",
     headers: buildHeaders(),
