@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       amount: Math.round(amount),
       email,
       externalId,
-      message: message ?? "FoodLoop rescue payment",
+      message: message ?? "EcoPlate rescue payment",
       redirectUrl: `${origin}/orders/pending?transId={transId}`,
     });
 

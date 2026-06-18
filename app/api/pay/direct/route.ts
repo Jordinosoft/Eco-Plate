@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       name,
       email,
       externalId,
-      message: message ?? "FoodLoop rescue payment",
+      message: message ?? "EcoPlate rescue payment",
     });
 
     return NextResponse.json(result);

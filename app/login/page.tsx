@@ -33,6 +33,8 @@ export default function LoginPage() {
       router.push("/merchant");
     } else if (email.includes("admin")) {
       router.push("/admin");
+    } else if (email.includes("donor") || email.includes("farmer")) {
+      router.push("/donor");
     } else {
       router.push("/marketplace");
     }
@@ -54,7 +56,7 @@ export default function LoginPage() {
         <div className="relative z-10 flex flex-col gap-6">
           <Link href="/" className="absolute top-0 left-0 flex items-center gap-1.5 p-12">
             <span className="text-2xl">🍃</span>
-            <span className="text-xl font-bold">FoodLoop</span>
+            <span className="text-xl font-bold">EcoPlate</span>
           </Link>
 
           <div className="flex flex-col gap-2 mt-20">
@@ -93,7 +95,7 @@ export default function LoginPage() {
           {/* Mobile logo */}
           <Link href="/" className="lg:hidden flex items-center gap-1.5 mb-2">
             <span>🍃</span>
-            <span className="font-bold text-[var(--ep-green)]">FoodLoop</span>
+            <span className="font-bold text-[var(--ep-green)]">EcoPlate</span>
           </Link>
 
           <div>
@@ -127,7 +129,7 @@ export default function LoginPage() {
               </label>
               <input
                 type="email"
-                placeholder="hello@foodloop.org"
+                placeholder="hello@ecoplate.cm"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -196,7 +198,7 @@ export default function LoginPage() {
           </form>
 
           <p className="text-center text-sm text-[var(--ep-neutral)]">
-            New to FoodLoop?{" "}
+            New to EcoPlate?{" "}
             <Link
               href="/signup"
               className="font-semibold text-[var(--ep-orange)] hover:underline"
@@ -213,6 +215,7 @@ export default function LoginPage() {
                 { label: "Customer", href: "/marketplace" },
                 { label: "Merchant", href: "/merchant" },
                 { label: "NGO", href: "/ngo" },
+                { label: "Donor", href: "/donor" },
                 { label: "Admin", href: "/admin" },
               ].map((d) => (
                 <Link

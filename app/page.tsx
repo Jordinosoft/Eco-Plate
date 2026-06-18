@@ -9,6 +9,7 @@ import {
   ShoppingBag,
   Store,
   Heart,
+  Sprout,
 } from "lucide-react";
 
 // ─── Stat Card ────────────────────────────────────────────────────────────────
@@ -162,7 +163,7 @@ export default function Home() {
         className="bg-white px-4 py-16 sm:px-6 lg:px-8 border-y border-black/5"
       >
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-center text-2xl font-bold text-[var(--ep-green)] mb-2">Why FoodLoop?</h2>
+          <h2 className="text-center text-2xl font-bold text-[var(--ep-green)] mb-2">Why EcoPlate?</h2>
           <p className="text-center text-sm text-[var(--ep-neutral)] mb-10">Our community impact grows every day.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
             <StatCard
@@ -192,39 +193,46 @@ export default function Home() {
           </h2>
           <p className="text-center text-[var(--ep-neutral)] mb-12 max-w-lg mx-auto">
             Whether you're saving money on meals, reducing business waste, or
-            solving food insecurity — there's a place for you on FoodLoop.
+            solving food insecurity — there's a place for you on EcoPlate.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <PathCard
-              icon={<ShoppingBag size={32} />}
+              icon={<ShoppingBag size={28} />}
               title="Rescuers"
               bullets={[
-                "Get 30–70% off high-quality surplus food from your favourite local spots.",
-                "Eat with purpose, reducing business waste.",
+                "Get 30–70% off surplus food from local spots.",
                 "Track your CO₂ savings with every purchase.",
               ]}
               href="/signup?role=customer"
               imageBg="url(https://images.unsplash.com/photo-1506354666786-959d6d497f1a?w=600&q=80)"
             />
             <PathCard
-              icon={<Store size={32} />}
+              icon={<Store size={28} />}
               title="Merchants"
               bullets={[
                 "Turn unsold surplus into extra revenue.",
                 "Reduce your environmental footprint.",
-                "Discover customers and make a difference.",
               ]}
               href="/signup?role=merchant"
               imageBg="url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80)"
             />
             <PathCard
-              icon={<Heart size={32} />}
+              icon={<Sprout size={28} />}
+              title="Farmers & Donors"
+              bullets={[
+                "Sell excess harvest at discount to recover costs.",
+                "Or donate — farmers, gardeners, households.",
+              ]}
+              href="/signup?role=donor"
+              imageBg="url(https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&q=80)"
+            />
+            <PathCard
+              icon={<Heart size={28} />}
               title="NGOs"
               bullets={[
-                "Focus your redistribution efforts only on legitimate demand.",
-                "Connect with more merchants near you.",
-                "Streamline logistics and collection.",
+                "Claim food donations and manage collection.",
+                "Streamline logistics and reduce hunger.",
               ]}
               href="/signup?role=ngo"
               imageBg="url(https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80)"
@@ -272,7 +280,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl flex flex-col items-center gap-6">
           <h2 className="text-3xl font-bold">Ready to make a difference?</h2>
           <p className="text-white/80 leading-relaxed">
-            Download the FoodLoop app and start your rescue journey today.
+            Download the EcoPlate app and start your rescue journey today.
             Available on iOS and Android.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 items-center">
@@ -308,8 +316,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-[var(--ep-green)] border-t border-white/10 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/60">
-          <span className="font-semibold text-white">🍃 FoodLoop</span>
-          <p>© {new Date().getFullYear()} FoodLoop. All rights reserved.</p>
+          <span className="font-semibold text-white">🍃 EcoPlate</span>
+          <p>© {new Date().getFullYear()} EcoPlate. All rights reserved.</p>
           <nav className="flex flex-wrap justify-center gap-4">
             <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
             <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>

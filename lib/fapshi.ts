@@ -1,20 +1,27 @@
-// ─── Fapshi API client ────────────────────────────────────────────────────────
+// Fapshi API client — server-side only (credentials never reach the browser)
 // Docs: https://sandbox.fapshi.com
-// Both endpoints require apiuser + apikey headers.
 // Minimum transaction: 100 XAF.
 
 const BASE = "https://sandbox.fapshi.com";
 
-const HEADERS = {
-  "Content-Type": "application/json",
-  apiuser: process.env.FAPSHI_API_USER!,
-  apikey: process.env.FAPSHI_API_KEY!,
-};
+// Headers built inside each call so env vars are read at request time, not module load
+function buildHeaders() {
+  const apiuser = process.env.FAPSHI_API_USER;
+  const apikey  = process.env.FAPSHI_API_KEY;
+  if (!apiuser || !apikey) {
+    throw new Error("Fapshi credentials missing — check FAPSHI_API_USER and FAPSHI_API_KEY in .env");
+  }
+  return {
+    "Content-Type": "application/json",
+    apiuser,
+    apikey,
+  };
+}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type PayLinkPayload = {
-  amount: number;         // XAF, min 100
+  amount: number;
   email?: string;
   redirectUrl?: string;
   userId?: string;
@@ -24,14 +31,14 @@ export type PayLinkPayload = {
 
 export type PayLinkResponse = {
   message: string;
-  link: string;           // URL to redirect user to
+  link: string;
   transId: string;
   dateInitiated: string;
 };
 
 export type DirectPayPayload = {
-  amount: number;         // XAF, min 100
-  phone: string;          // e.g. "67XXXXXXX"
+  amount: number;
+  phone: string;
   medium?: "mobile money" | "orange money";
   name?: string;
   email?: string;
@@ -57,58 +64,39 @@ export type TransactionStatus = {
 };
 
 // ─── Payment Link ─────────────────────────────────────────────────────────────
-// Redirects user to a hosted Fapshi checkout page. Link expires in 24h.
 
-export async function createPaymentLink(
-  payload: PayLinkPayload
-): Promise<PayLinkResponse> {
+export async function createPaymentLink(payload: PayLinkPayload): Promise<PayLinkResponse> {
   const res = await fetch(`${BASE}/initiate-pay`, {
     method: "POST",
-    headers: HEADERS,
+    headers: buildHeaders(),
     body: JSON.stringify(payload),
   });
-
   const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data?.message ?? `Fapshi error ${res.status}`);
-  }
+  if (!res.ok) throw new Error(data?.message ?? `Fapshi error ${res.status}`);
   return data as PayLinkResponse;
 }
 
 // ─── Direct Pay ───────────────────────────────────────────────────────────────
-// Pushes a payment request to the user's phone directly.
-// Note: disabled by default in live env — must be enabled via Fapshi dashboard.
-// Direct pay transactions cannot be expired; final state is SUCCESSFUL or FAILED.
 
-export async function initiateDirectPay(
-  payload: DirectPayPayload
-): Promise<DirectPayResponse> {
+export async function initiateDirectPay(payload: DirectPayPayload): Promise<DirectPayResponse> {
   const res = await fetch(`${BASE}/direct-pay`, {
     method: "POST",
-    headers: HEADERS,
+    headers: buildHeaders(),
     body: JSON.stringify(payload),
   });
-
   const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data?.message ?? `Fapshi error ${res.status}`);
-  }
+  if (!res.ok) throw new Error(data?.message ?? `Fapshi error ${res.status}`);
   return data as DirectPayResponse;
 }
 
-// ─── Check Transaction Status ─────────────────────────────────────────────────
+// ─── Transaction Status ───────────────────────────────────────────────────────
 
-export async function getTransactionStatus(
-  transId: string
-): Promise<TransactionStatus> {
+export async function getTransactionStatus(transId: string): Promise<TransactionStatus> {
   const res = await fetch(`${BASE}/payment-status/${transId}`, {
     method: "GET",
-    headers: HEADERS,
+    headers: buildHeaders(),
   });
-
   const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data?.message ?? `Fapshi error ${res.status}`);
-  }
+  if (!res.ok) throw new Error(data?.message ?? `Fapshi error ${res.status}`);
   return data as TransactionStatus;
 }
