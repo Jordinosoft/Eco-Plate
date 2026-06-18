@@ -42,7 +42,7 @@ function FoodCard({
         <div className="flex items-center gap-1 text-xs text-[var(--ep-neutral)]">
           <MapPin size={10} />
           <span className="truncate">{listing.merchant}</span>
-          <span>· 0.{Math.floor(Math.random() * 8) + 1} miles</span>
+          <span>· 0.{listing.id.charCodeAt(1) % 8 + 1} km</span>
         </div>
 
         <div className="flex items-center justify-between mt-1.5">
