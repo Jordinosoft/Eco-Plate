@@ -35,7 +35,7 @@ export default function CommunityPage() {
 
       <div className="flex-1 flex flex-col overflow-y-auto">
         {/* Header */}
-        <div className="px-8 py-6 border-b border-gray-100 bg-white">
+        <div className="px-4 sm:px-6 py-4 sm:py-6 border-b border-gray-100 bg-white">
           <h1 className="text-xl font-bold text-gray-900">Community Hub</h1>
           <p className="text-sm text-[var(--ep-neutral)]">Our Collective Ripple — together we're changing the food system</p>
         </div>
@@ -61,7 +61,7 @@ export default function CommunityPage() {
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Top Rescuers */}
             <div className="rounded-2xl bg-white border border-gray-100 p-6">
               <div className="flex items-center justify-between mb-4">
@@ -118,7 +118,7 @@ export default function CommunityPage() {
           {/* Recent Achievements */}
           <div className="rounded-2xl bg-white border border-gray-100 p-6">
             <h2 className="font-semibold text-gray-900 mb-4">Recent Achievements</h2>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {ACHIEVEMENTS.map((a) => (
                 <div key={a.title} className="rounded-xl border border-gray-100 p-4 flex flex-col items-center text-center gap-2">
                   <span className="text-3xl">{a.icon}</span>

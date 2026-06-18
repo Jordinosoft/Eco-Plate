@@ -22,7 +22,7 @@ export default function AdminDashboard() {
       <div className="flex-1 flex flex-col">
         <AdminHeader />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           {/* Header */}
           <div className="flex items-center justify-between">
             <div>
@@ -57,7 +57,7 @@ export default function AdminDashboard() {
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-[1fr_300px] gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6">
             {/* Chart */}
             <div className="rounded-2xl bg-white border border-gray-100 p-5">
               <div className="flex items-center justify-between mb-2">

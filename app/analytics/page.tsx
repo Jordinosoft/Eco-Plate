@@ -39,7 +39,7 @@ export default function AnalyticsPage() {
 
       <div className="flex-1 flex flex-col overflow-y-auto">
         {/* Header */}
-        <div className="px-8 py-6 border-b border-gray-100 bg-white flex items-center justify-between">
+        <div className="px-4 sm:px-6 py-4 sm:py-6 border-b border-gray-100 bg-white flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold text-gray-900">Your Rescuer Analytics</h1>
             <p className="text-sm text-[var(--ep-neutral)]">Tracking your personal climate impact</p>
@@ -70,7 +70,7 @@ export default function AnalyticsPage() {
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Impact Trends */}
             <div className="rounded-2xl bg-white border border-gray-100 p-6">
               <div className="flex items-center justify-between mb-4">

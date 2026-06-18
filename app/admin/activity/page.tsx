@@ -40,7 +40,7 @@ export default function AdminActivityPage() {
       <div className="flex-1 flex flex-col">
         <AdminHeader />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           {/* Header */}
           <div className="flex items-center justify-between">
             <div>
@@ -72,7 +72,7 @@ export default function AdminActivityPage() {
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Live feed */}
             <div className="rounded-2xl bg-white border border-gray-100 p-5">
               <div className="flex items-center justify-between mb-4">
@@ -128,7 +128,7 @@ export default function AdminActivityPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Regional distribution */}
             <div className="rounded-2xl bg-white border border-gray-100 p-5">
               <h2 className="font-semibold text-gray-900 mb-4">Regional Distribution</h2>
@@ -162,7 +162,7 @@ export default function AdminActivityPage() {
               <p className="text-sm text-[var(--ep-neutral)] mb-4">
                 Scheduled for Logical Audit
               </p>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
                   { label: "PDF", icon: "📄", color: "bg-red-50 text-red-600 border-red-100" },
                   { label: "CSV", icon: "📊", color: "bg-[var(--ep-green-light)] text-[var(--ep-green)] border-[var(--ep-green-mid)]/20" },
@@ -188,7 +188,8 @@ export default function AdminActivityPage() {
                 ↕ Sort
               </button>
             </div>
-            <table className="w-full text-sm">
+            <div className="overflow-x-auto">
+            <table className="w-full text-sm min-w-[560px]">
               <thead>
                 <tr className="border-b border-gray-100 text-xs text-[var(--ep-neutral)] uppercase tracking-wide">
                   {["Event ID", "Merchant", "Action", "Metric Impact", "Timestamp", "Status"].map((h) => (
@@ -225,6 +226,7 @@ export default function AdminActivityPage() {
                 ))}
               </tbody>
             </table>
+            </div>
             <div className="px-5 py-3 border-t border-gray-100 flex justify-between items-center">
               <p className="text-xs text-[var(--ep-neutral)]">Showing 1–4 of 1,247 events</p>
               <button className="text-xs text-[var(--ep-orange)] hover:underline">Next →</button>

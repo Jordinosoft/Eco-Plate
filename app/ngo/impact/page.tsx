@@ -12,7 +12,7 @@ export default function NGOImpactPage() {
       <div className="flex-1 flex flex-col">
         <NGOHeader />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           <div>
             <h1 className="text-xl font-bold text-gray-900">Impact Hub</h1>
             <p className="text-sm text-[var(--ep-neutral)]">
@@ -65,7 +65,7 @@ export default function NGOImpactPage() {
               directly feeds people in need. Your participation in FoodLoop
               creates measurable, scalable environmental impact.
             </p>
-            <div className="grid grid-cols-3 gap-4 mt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2">
               {[
                 { v: "64", label: "Meals This Month" },
                 { v: "2.1t", label: "Waste Diverted" },

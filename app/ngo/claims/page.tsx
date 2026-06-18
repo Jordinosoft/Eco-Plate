@@ -66,7 +66,7 @@ export default function NGOClaimsPage() {
       <div className="flex-1 flex flex-col">
         <NGOHeader />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           {/* Header row */}
           <div className="flex items-center justify-between">
             <h1 className="text-xl font-bold text-gray-900">Active Claims</h1>
@@ -100,7 +100,7 @@ export default function NGOClaimsPage() {
               Immediate Actions
             </p>
 
-            <div className="grid lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {visible.map((claim) => (
                 <div
                   key={claim.id}

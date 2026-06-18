@@ -25,7 +25,7 @@ export default function NGODashboard() {
       <div className="flex-1 flex flex-col">
         <NGOHeader />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-xl font-bold text-gray-900">Overview</h1>
@@ -92,7 +92,7 @@ export default function NGODashboard() {
             </Link>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Daily logistics */}
             <div className="rounded-2xl bg-white border border-gray-100 p-5">
               <div className="flex items-center justify-between mb-4">

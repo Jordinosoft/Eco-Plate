@@ -51,7 +51,7 @@ export default function MerchantVerificationPage() {
       <div className="flex-1 flex flex-col">
         <AdminHeader />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           {/* Header */}
           <div className="flex items-center justify-between">
             <div>

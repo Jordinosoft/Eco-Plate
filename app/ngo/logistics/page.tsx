@@ -37,9 +37,9 @@ export default function NGOLogisticsPage() {
       <div className="flex-1 flex flex-col">
         <NGOHeader />
 
-        <main className="p-0 flex flex-col">
+        <main className="flex flex-col pb-24 lg:pb-0">
           {/* Top status bar */}
-          <div className="flex items-center gap-4 px-6 py-2 bg-white border-b border-gray-100 text-xs">
+          <div className="flex items-center gap-4 px-4 py-2 bg-white border-b border-gray-100 text-xs">
             <div className="flex items-center gap-1.5 text-[var(--ep-green-mid)]">
               <span className="h-2 w-2 rounded-full bg-[var(--ep-green-mid)]" />
               System Optimised
@@ -49,9 +49,9 @@ export default function NGOLogisticsPage() {
             </div>
           </div>
 
-          <div className="flex flex-1">
-            {/* Left panel */}
-            <div className="w-80 shrink-0 border-r border-gray-100 bg-white flex flex-col overflow-y-auto">
+          <div className="flex flex-col lg:flex-row flex-1 min-h-0">
+            {/* Left panel — full width on mobile, fixed sidebar on desktop */}
+            <div className="w-full lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-gray-100 bg-white flex flex-col lg:overflow-y-auto">
               <div className="px-4 py-3 border-b border-gray-100">
                 <h1 className="font-bold text-gray-900">Live Routes</h1>
                 <div className="flex gap-3 mt-2 text-xs">

@@ -40,9 +40,9 @@ export default function AdminUsersPage() {
       <div className="flex-1 flex flex-col">
         <AdminHeader />
 
-        <main className="p-6 flex gap-6">
+        <main className="p-4 sm:p-6 flex flex-col lg:flex-row gap-6 pb-24 lg:pb-6">
           {/* Filters panel */}
-          <aside className="w-48 shrink-0 flex flex-col gap-4">
+          <aside className="w-full lg:w-48 shrink-0 flex flex-col gap-4">
             <div className="rounded-2xl bg-white border border-gray-100 p-4 flex flex-col gap-4">
               <div className="flex items-center justify-between">
                 <h2 className="font-semibold text-gray-900 text-sm">FILTERS</h2>
@@ -128,7 +128,8 @@ export default function AdminUsersPage() {
                 </div>
               </div>
 
-              <table className="w-full text-sm">
+              <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[600px]">
                 <thead>
                   <tr className="border-b border-gray-100 text-xs text-[var(--ep-neutral)] uppercase tracking-wide">
                     {["User Details", "Role", "Join Date", "Impact Score", "Status", "Actions"].map((h) => (
@@ -187,6 +188,7 @@ export default function AdminUsersPage() {
                   ))}
                 </tbody>
               </table>
+              </div>
 
               {/* Pagination */}
               <div className="px-5 py-3 border-t border-gray-100 flex items-center justify-between">
@@ -213,7 +215,7 @@ export default function AdminUsersPage() {
             </div>
 
             {/* Bottom stats */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
                 { label: "New Registrations", value: "+128", sub: "↑ 14%  Past 30 days", color: "text-[var(--ep-green)]" },
                 { label: "Pending Verifications", value: "42", sub: "Requires attention", subColor: "text-[var(--ep-orange)]", color: "text-[var(--ep-orange)]" },
