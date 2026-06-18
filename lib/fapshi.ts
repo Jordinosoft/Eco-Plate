@@ -36,11 +36,10 @@ export type PayLinkResponse = {
   dateInitiated: string;
 };
 
-// Note: Fapshi sandbox direct-pay does not accept a `medium` field.
-// Network selection (Orange vs MTN) is determined by the phone number prefix.
 export type DirectPayPayload = {
   amount: number;
   phone: string;
+  medium?: "mobile money" | "orange money";
   name?: string;
   email?: string;
   userId?: string;

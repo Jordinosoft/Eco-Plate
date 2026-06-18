@@ -72,12 +72,14 @@ export default function ListingPage({ params }: { params: Promise<{ id: string }
     setError(null);
     setStep("processing");
     try {
+      const medium = payMethod === "mtn" ? "mobile money" : "orange money";
       const res = await fetch("https://sandbox.fapshi.com/direct-pay", {
         method: "POST",
         headers: FAPSHI_HEADERS,
         body: JSON.stringify({
           amount: totalXAF,
-          phone: `237${phone.replace(/\s/g, "")}`,
+          phone: phone.replace(/\s/g, ""),
+          medium,
           message: `EcoPlate: ${listing!.title}`,
           externalId: listing!.id,
         }),
