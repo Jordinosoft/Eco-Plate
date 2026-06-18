@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# design screens
+/Eco_Plate_Design_Screens
+
+# Context files
+Cameroonian_Food_Archives_Precious_Core.csv
+Orange_hackathon.pdf
+FoodLoop_Complete_Design_Document_v2.docx
+
+
