@@ -30,25 +30,33 @@ export default function ListingPage({ params }: { params: Promise<{ id: string }
   const feeXAF = Math.round(listing.discountedPrice * 0.03);
   const totalXAF = listing.discountedPrice + feeXAF;
 
+  const FAPSHI_HEADERS = {
+    "Content-Type": "application/json",
+    apiuser: "eaf4374a-953c-4bbd-89de-982954a09bdf",
+    apikey:  "FAK_8689e8977be85885a16101fb4103b104",
+  };
+
   async function handleConfirm() {
     setError(null);
     if (payMethod === "orange" || payMethod === "mtn") {
       setStep("phone");
       return;
     }
+    // Fapshi Checkout — redirect to payment page
     setStep("processing");
     try {
-      const res = await fetch("/api/pay", {
+      const res = await fetch("https://sandbox.fapshi.com/initiate-pay", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: FAPSHI_HEADERS,
         body: JSON.stringify({
           amount: totalXAF,
           message: `EcoPlate: ${listing!.title}`,
           externalId: listing!.id,
+          redirectUrl: `${window.location.origin}/orders/pending`,
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
+      if (!res.ok) throw new Error(data.message ?? "Payment failed");
       window.location.href = data.link;
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Payment failed");
@@ -64,20 +72,18 @@ export default function ListingPage({ params }: { params: Promise<{ id: string }
     setError(null);
     setStep("processing");
     try {
-      const medium = payMethod === "mtn" ? "mobile money" : "orange money";
-      const res = await fetch("/api/pay/direct", {
+      const res = await fetch("https://sandbox.fapshi.com/direct-pay", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: FAPSHI_HEADERS,
         body: JSON.stringify({
           amount: totalXAF,
-          phone: phone.replace(/\s/g, ""),
-          medium,
+          phone: `237${phone.replace(/\s/g, "")}`,
           message: `EcoPlate: ${listing!.title}`,
           externalId: listing!.id,
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
+      if (!res.ok) throw new Error(data.message ?? "Payment failed");
       setTransId(data.transId);
       setStep("done");
     } catch (e: unknown) {
