@@ -69,7 +69,7 @@ function PathCard({
           ))}
         </ul>
         <div className="mt-auto pt-2">
-          <Link href={href} className="btn-primary text-sm w-full justify-center">
+          <Link href={href} className="btn-cta text-sm w-full justify-center">
             Join Now
           </Link>
         </div>
@@ -162,9 +162,8 @@ export default function Home() {
         className="bg-white px-4 py-16 sm:px-6 lg:px-8 border-y border-black/5"
       >
         <div className="mx-auto max-w-7xl">
-          <p className="text-center text-sm font-medium text-[var(--ep-neutral)] mb-10 uppercase tracking-widest">
-            Why FoodLoop? Our community impact grows every day.
-          </p>
+          <h2 className="text-center text-2xl font-bold text-[var(--ep-green)] mb-2">Why FoodLoop?</h2>
+          <p className="text-center text-sm text-[var(--ep-neutral)] mb-10">Our community impact grows every day.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
             <StatCard
               icon={<Utensils size={20} />}
@@ -173,7 +172,7 @@ export default function Home() {
             />
             <StatCard
               icon={<Leaf size={20} />}
-              value={`${(IMPACT.co2PreventedKg / 1_000).toFixed(1)}k kg`}
+              value={`${(IMPACT.co2PreventedKg / 1_000_000).toFixed(1)}M kg`}
               label="CO₂ Prevented"
             />
             <StatCard
@@ -277,19 +276,32 @@ export default function Home() {
             Available on iOS and Android.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 items-center">
+            {/* App Store badge */}
             <Link
               href="/signup"
-              className="btn-cta"
+              className="inline-flex items-center gap-3 rounded-xl bg-black/60 border border-white/20 hover:bg-black/80 transition px-5 py-3"
             >
-              Get Started Free
+              <span className="text-2xl leading-none">🍎</span>
+              <div className="text-left">
+                <p className="text-[10px] text-white/60 uppercase tracking-widest leading-none mb-0.5">Download on the</p>
+                <p className="text-sm font-semibold text-white leading-none">App Store</p>
+              </div>
             </Link>
+            {/* Play Store badge */}
             <Link
-              href="/marketplace"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+              href="/signup"
+              className="inline-flex items-center gap-3 rounded-xl bg-black/60 border border-white/20 hover:bg-black/80 transition px-5 py-3"
             >
-              Browse Marketplace
+              <span className="text-2xl leading-none">▶️</span>
+              <div className="text-left">
+                <p className="text-[10px] text-white/60 uppercase tracking-widest leading-none mb-0.5">Get it on</p>
+                <p className="text-sm font-semibold text-white leading-none">Google Play</p>
+              </div>
             </Link>
           </div>
+          <Link href="/marketplace" className="text-sm text-white/60 hover:text-white transition underline underline-offset-4">
+            Or browse the web app →
+          </Link>
         </div>
       </section>
 
@@ -297,10 +309,12 @@ export default function Home() {
       <footer className="bg-[var(--ep-green)] border-t border-white/10 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/60">
           <span className="font-semibold text-white">🍃 FoodLoop</span>
-          <p>© {new Date().getFullYear()} FoodLoop. Protecting the planet, one meal at a time.</p>
-          <nav className="flex gap-4">
+          <p>© {new Date().getFullYear()} FoodLoop. All rights reserved.</p>
+          <nav className="flex flex-wrap justify-center gap-4">
             <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="#" className="hover:text-white transition-colors">Data Report</Link>
+            <Link href="/merchant" className="hover:text-white transition-colors">Merchant Portal</Link>
             <Link href="#" className="hover:text-white transition-colors">Contact</Link>
           </nav>
         </div>
