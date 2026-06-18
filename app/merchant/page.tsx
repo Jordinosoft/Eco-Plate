@@ -17,7 +17,7 @@ export default function MerchantDashboard() {
       <div className="flex-1 flex flex-col">
         <MerchantHeader title="Dashboard" />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           {/* Page heading */}
           <div className="flex items-center justify-between">
             <div>

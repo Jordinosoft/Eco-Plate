@@ -34,7 +34,7 @@ export default function MerchantImpactPage() {
       <div className="flex-1 flex flex-col">
         <MerchantHeader title="Impact" />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           {/* Green legacy */}
           <div className="rounded-2xl bg-[var(--ep-cream)] border border-[var(--ep-green-mid)]/30 p-5">
             <h1 className="text-lg font-bold text-[var(--ep-green)] mb-1">

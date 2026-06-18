@@ -40,7 +40,7 @@ export default function MerchantAnalyticsPage() {
       <div className="flex-1 flex flex-col">
         <MerchantHeader title="Analytics" />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           <div className="flex items-center justify-between">
             <h1 className="text-xl font-bold text-gray-900">Analytics</h1>
             <button className="text-xs text-[var(--ep-orange)] border border-[var(--ep-orange)]/30 rounded-xl px-3 py-1.5 hover:bg-[var(--ep-orange-light)] transition">

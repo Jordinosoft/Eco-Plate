@@ -70,7 +70,7 @@ export default function MerchantListingsPage() {
       <div className="flex-1 flex flex-col">
         <MerchantHeader title="Listings" />
 
-        <main className="p-6 flex flex-col gap-6">
+        <main className="p-4 sm:p-6 flex flex-col gap-6 pb-24 lg:pb-6">
           {/* Header */}
           <div>
             <h1 className="text-xl font-bold text-gray-900">Merchant Listings</h1>
