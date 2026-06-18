@@ -284,26 +284,34 @@ export default function Home() {
             Available on iOS and Android.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 items-center">
-            {/* App Store badge */}
+            {/* Google Play badge */}
             <Link
               href="/signup"
-              className="inline-flex items-center gap-3 rounded-xl bg-black/60 border border-white/20 hover:bg-black/80 transition px-5 py-3"
+              className="inline-flex items-center gap-3 rounded-xl bg-black hover:bg-neutral-900 transition px-5 py-3 border border-white/10 min-w-[168px]"
             >
-              <span className="text-2xl leading-none">🍎</span>
-              <div className="text-left">
-                <p className="text-[10px] text-white/60 uppercase tracking-widest leading-none mb-0.5">Download on the</p>
-                <p className="text-sm font-semibold text-white leading-none">App Store</p>
-              </div>
-            </Link>
-            {/* Play Store badge */}
-            <Link
-              href="/signup"
-              className="inline-flex items-center gap-3 rounded-xl bg-black/60 border border-white/20 hover:bg-black/80 transition px-5 py-3"
-            >
-              <span className="text-2xl leading-none">▶️</span>
+              <img
+                src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-play-store-icon.png"
+                alt="Google Play"
+                className="h-7 w-7 object-contain"
+              />
               <div className="text-left">
                 <p className="text-[10px] text-white/60 uppercase tracking-widest leading-none mb-0.5">Get it on</p>
                 <p className="text-sm font-semibold text-white leading-none">Google Play</p>
+              </div>
+            </Link>
+            {/* App Store badge */}
+            <Link
+              href="/signup"
+              className="inline-flex items-center gap-3 rounded-xl bg-black hover:bg-neutral-900 transition px-5 py-3 border border-white/10 min-w-[168px]"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Apple_Store_logo.svg/960px-Apple_Store_logo.svg.png"
+                alt="App Store"
+                className="h-7 w-7 object-contain"
+              />
+              <div className="text-left">
+                <p className="text-[10px] text-white/60 uppercase tracking-widest leading-none mb-0.5">Download on the</p>
+                <p className="text-sm font-semibold text-white leading-none">App Store</p>
               </div>
             </Link>
           </div>
