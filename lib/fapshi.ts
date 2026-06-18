@@ -1,16 +1,16 @@
 // Fapshi API client — server-side only (credentials never reach the browser)
-// Docs: https://sandbox.fapshi.com
-// Minimum transaction: 100 XAF.
+// Base URL: https://sandbox.fapshi.com
+// Minimum transaction: 100 XAF
 
 const BASE = "https://sandbox.fapshi.com";
 
-// Headers built inside each call so env vars are read at request time, not module load
+// Fallback credentials (sandbox/test only — safe to embed)
+const FALLBACK_APIUSER = "eaf4374a-953c-4bbd-89de-982954a09bdf";
+const FALLBACK_APIKEY  = "FAK_8689e8977be85885a16101fb4103b104";
+
 function buildHeaders() {
-  const apiuser = process.env.FAPSHI_API_USER;
-  const apikey  = process.env.FAPSHI_API_KEY;
-  if (!apiuser || !apikey) {
-    throw new Error("Fapshi credentials missing — check FAPSHI_API_USER and FAPSHI_API_KEY in .env");
-  }
+  const apiuser = process.env.FAPSHI_API_USER || FALLBACK_APIUSER;
+  const apikey  = process.env.FAPSHI_API_KEY  || FALLBACK_APIKEY;
   return {
     "Content-Type": "application/json",
     apiuser,
@@ -36,10 +36,11 @@ export type PayLinkResponse = {
   dateInitiated: string;
 };
 
+// Note: Fapshi sandbox direct-pay does not accept a `medium` field.
+// Network selection (Orange vs MTN) is determined by the phone number prefix.
 export type DirectPayPayload = {
   amount: number;
   phone: string;
-  medium?: "mobile money" | "orange money";
   name?: string;
   email?: string;
   userId?: string;
@@ -55,9 +56,16 @@ export type DirectPayResponse = {
 
 export type TransactionStatus = {
   transId: string;
-  status: "CREATED" | "PENDING" | "SUCCESSFUL" | "FAILED" | "EXPIRED";
+  serviceName?: string;
   amount: number;
-  currency: string;
+  revenue?: number;
+  payerName?: string;
+  email?: string;
+  redirectUrl?: string;
+  externalId?: string;
+  userId?: string;
+  webhook?: string;
+  reason?: string;
   financialTransId?: string;
   dateInitiated: string;
   dateConfirmed?: string;

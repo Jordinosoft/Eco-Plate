@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { initiateDirectPay } from "@/lib/fapshi";
 
 // POST /api/pay/direct
-// Pushes an Orange Money / Mobile Money payment request directly to the user's phone.
-// Body: { amount, phone, medium?, name?, email?, externalId?, message? }
+// Pushes a Fapshi direct-pay request to the user's phone.
+// Network (Orange vs MTN) is determined by phone number prefix — no medium field.
+// Body: { amount, phone, name?, email?, externalId?, message? }
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { amount, phone, medium, name, email, externalId, message } = body;
+    const { amount, phone, name, email, externalId, message } = body;
 
     if (!amount || amount < 100) {
       return NextResponse.json(
@@ -26,7 +27,6 @@ export async function POST(req: NextRequest) {
     const result = await initiateDirectPay({
       amount: Math.round(amount),
       phone,
-      medium: medium ?? "orange money",
       name,
       email,
       externalId,
